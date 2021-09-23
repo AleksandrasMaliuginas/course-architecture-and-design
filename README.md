@@ -1,3 +1,3 @@
 # course-architecture-and-design
 
-Aleksandras Maliuginas I gr. 1 porg.
+Aleksandras Maliuginas I gr. 1 pogr.
