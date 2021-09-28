@@ -33,8 +33,4 @@ public class EmailValidator {
         var domain = emailParts[emailParts.length - 1];
         return !domain.contains("random");
     }
-
-    public static void getTopLevelDomains(String email) {
-
-    }
 }
