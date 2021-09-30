@@ -1,5 +1,5 @@
 package com.alemal.validation;
 
 public interface PhoneNumberFactoryService {
-    PhoneNumber createPhoneNumber(String phoneNumber);
+    PhoneNumber createPhoneNumber(PhoneNumber.CountryCode code, String phoneNumber);
 }

@@ -3,7 +3,8 @@ package com.alemal.validation;
 public class PhoneValidator {
     public boolean validate(String phoneNumber) {
         return isNotEmpty(phoneNumber)
-                && isNumeric(phoneNumber);
+                && isNumeric(phoneNumber)
+                && isCorrectLength(phoneNumber);
     }
 
     private boolean isNotEmpty(String phoneNumber) {
@@ -19,8 +20,13 @@ public class PhoneValidator {
         return true;
     }
 
-    public String convert(String phoneNumber) {
+    public String convert(PhoneNumber.CountryCode code, String phoneNumber) {
         var numberFactory = new PhoneNumberFactory();
-        return null;
+        var phoneNum = numberFactory.createPhoneNumber(code, phoneNumber);
+        return phoneNum.convert();
+    }
+
+    private boolean isCorrectLength(String phoneNumber) {
+        return phoneNumber.length() == 9;
     }
 }

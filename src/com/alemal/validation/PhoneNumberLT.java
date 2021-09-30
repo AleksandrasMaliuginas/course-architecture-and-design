@@ -5,7 +5,7 @@ public class PhoneNumberLT extends PhoneNumber {
     private final int PHONE_NUMBER_LENGTH = 9;
 
     public PhoneNumberLT(String phoneNumber) {
-        super("+370", phoneNumber);
+        super(CountryCode.LT, phoneNumber);
     }
 
     @Override
@@ -13,11 +13,12 @@ public class PhoneNumberLT extends PhoneNumber {
         return validateLength(phoneNumber);
     }
 
-    private boolean validateLength(String phoneNumber) {
-        return false;
+    @Override
+    public String convert() {
+        return "+370" + phoneNumber.substring(1);
     }
 
-    private void convertNumber(String phoneNumber) {
-
+    private boolean validateLength(String phoneNumber) {
+        return false;
     }
 }

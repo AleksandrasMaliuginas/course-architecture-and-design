@@ -47,12 +47,11 @@ class PhoneValidatorTest {
 
     @Test
     void test_valid_LT() {
-        assertEquals("+37061234567", phoneValidator.convert("861234567"));
+        assertEquals("+37061234567", phoneValidator.convert(PhoneNumber.CountryCode.LT, "861234567"));
     }
 
     @Test
     void test_invalid_lengthLT() {
-        assertFalse(phoneValidator.validate("+3706123456"));
         assertFalse(phoneValidator.validate("86123456"));
     }
 }
