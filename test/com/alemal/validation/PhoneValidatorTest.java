@@ -3,8 +3,7 @@ package com.alemal.validation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PhoneValidatorTest {
 
@@ -27,22 +26,28 @@ class PhoneValidatorTest {
 
     @Test
     void test_emptyOnlyWithSpaceChars() {
-        assertFalse(phoneValidator.validate(" "));
-        assertFalse(phoneValidator.validate("         "));
+        assertAll(
+                () -> assertFalse(phoneValidator.validate(" ")),
+                () -> assertFalse(phoneValidator.validate("         "))
+        );
     }
 
     @Test
     void test_invalid_isNumericWithLetters() {
-        assertFalse(phoneValidator.validate("86123A567"));
-        assertFalse(phoneValidator.validate("@86232567"));
-        assertFalse(phoneValidator.validate("86232567B"));
+        assertAll(
+                () -> assertFalse(phoneValidator.validate("86123A567")),
+                () -> assertFalse(phoneValidator.validate("@86232567")),
+                () -> assertFalse(phoneValidator.validate("86232567B"))
+        );
     }
 
     @Test
     void test_invalid_isNumericWithSpaces() {
-        assertFalse(phoneValidator.validate(" 861234567"));
-        assertFalse(phoneValidator.validate("861234567 "));
-        assertFalse(phoneValidator.validate("86123 4567"));
+        assertAll(
+                () -> assertFalse(phoneValidator.validate(" 861234567")),
+                () -> assertFalse(phoneValidator.validate("861234567 ")),
+                () -> assertFalse(phoneValidator.validate("86123 4567"))
+        );
     }
 
     @Test

@@ -3,8 +3,7 @@ package com.alemal.validation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordCheckerTest {
 
@@ -27,20 +26,26 @@ class PasswordCheckerTest {
 
     @Test
     void test_emptyOnlyWithSpaceChars() {
-        assertFalse(passwordChecker.validate(" "));
-        assertFalse(passwordChecker.validate("         "));
+        assertAll(
+                () -> assertFalse(passwordChecker.validate(" ")),
+                () -> assertFalse(passwordChecker.validate("         "))
+        );
     }
 
     @Test
     void test_invalid_length() {
-        assertFalse(passwordChecker.validate("A?!"));
-        assertFalse(passwordChecker.validate("Abc?!"));
+        assertAll(
+                () -> assertFalse(passwordChecker.validate("A?!")),
+                () -> assertFalse(passwordChecker.validate("Abc?!"))
+        );
     }
 
     @Test
     void test_invalid_lengthWithSpaces() {
-        assertFalse(passwordChecker.validate("Abc?! "));
-        assertFalse(passwordChecker.validate(" Abc?!"));
+        assertAll(
+                () -> assertFalse(passwordChecker.validate("Abc?! ")),
+                () -> assertFalse(passwordChecker.validate(" Abc?!"))
+        );
     }
 
     @Test
@@ -50,9 +55,11 @@ class PasswordCheckerTest {
 
     @Test
     void test_valid_uppercaseChars() {
-        assertTrue(passwordChecker.validate("abc@?!Xbc@?!"));
-        assertTrue(passwordChecker.validate("Abc@?!abc@?!"));
-        assertTrue(passwordChecker.validate("abc@?!abc@?A"));
+        assertAll(
+                () -> assertTrue(passwordChecker.validate("abc@?!Xbc@?!")),
+                () -> assertTrue(passwordChecker.validate("Abc@?!abc@?!")),
+                () -> assertTrue(passwordChecker.validate("abc@?!abc@?A"))
+        );
     }
 
     @Test
@@ -62,9 +69,11 @@ class PasswordCheckerTest {
 
     @Test
     void test_valid_SpecialChars() {
-        assertTrue(passwordChecker.validate("bcabc$Abcabc"));
-        assertTrue(passwordChecker.validate("?bcabcAbcabc"));
-        assertTrue(passwordChecker.validate("AbcabcAbcab?"));
+        assertAll(
+                () -> assertTrue(passwordChecker.validate("bcabc$Abcabc")),
+                () -> assertTrue(passwordChecker.validate("?bcabcAbcabc")),
+                () -> assertTrue(passwordChecker.validate("AbcabcAbcab?"))
+        );
     }
 
     @Test
