@@ -1,4 +1,4 @@
-package com.alemal.UserManager;
+package com.alemal.UserManager.service;
 
 import com.alemal.UserManager.module.User;
 import com.alemal.UserManager.ValidatorHelper.Status;

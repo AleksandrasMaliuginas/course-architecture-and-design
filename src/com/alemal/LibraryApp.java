@@ -1,6 +1,6 @@
 package com.alemal;
 
-import com.alemal.UserManager.IUserService;
+import com.alemal.UserManager.service.IUserService;
 import com.alemal.UserManager.module.User;
 
 import java.io.BufferedReader;

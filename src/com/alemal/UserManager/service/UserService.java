@@ -1,6 +1,5 @@
 package com.alemal.UserManager.service;
 
-import com.alemal.UserManager.IUserService;
 import com.alemal.UserManager.IUserValidation;
 import com.alemal.UserManager.ValidatorHelper.Status;
 import com.alemal.UserManager.module.User;
