@@ -1,5 +1,6 @@
 package com.alemal.UserManager.service;
 
+import com.alemal.UserManager.IUserValidation;
 import com.alemal.UserManager.UserValidator;
 import com.alemal.UserManager.ValidatorHelper;
 import com.alemal.UserManager.module.User;
@@ -21,13 +22,15 @@ import static org.mockito.Mockito.when;
 class UserServiceTest {
     @Mock
     IUserRepository userRepository = mock(UserRepository.class);
+    @Mock
+    IUserValidation userValidator = mock(UserValidator.class);
     IUserService userService;
 
     User defaultUser;
 
     @BeforeEach
     void setUp() {
-        userService = new UserService(new UserValidator(), userRepository);
+        userService = new UserService(userValidator, userRepository);
         defaultUser = new User();
         defaultUser.id = 3;
         defaultUser.firstname = "John";
@@ -48,6 +51,7 @@ class UserServiceTest {
     @Test
     void add() {
         when(userRepository.save(defaultUser)).thenReturn(defaultUser);
+        when(userValidator.validate(Mockito.any())).thenReturn(ValidatorHelper.Status.OK);
 
         var status = userService.add(defaultUser);
         assertEquals(ValidatorHelper.Status.OK, status);
@@ -56,6 +60,8 @@ class UserServiceTest {
     @Test
     void addInvalidEmail() {
         when(userRepository.save(defaultUser)).thenReturn(defaultUser);
+        when(userValidator.validate(Mockito.any())).thenReturn(ValidatorHelper.Status.INVALID_EMAIL);
+
         defaultUser.email = "asdfasdf@asdf";
 
         var status = userService.add(defaultUser);
@@ -65,6 +71,8 @@ class UserServiceTest {
     @Test
     void addInvalidPhoneNumber() {
         when(userRepository.save(defaultUser)).thenReturn(defaultUser);
+        when(userValidator.validate(Mockito.any())).thenReturn(ValidatorHelper.Status.INVALID_PHONE_NUMBER);
+
         defaultUser.phoneNumber = "1234";
 
         var status = userService.add(defaultUser);
@@ -74,6 +82,8 @@ class UserServiceTest {
     @Test
     void addInvalidPassword() {
         when(userRepository.save(defaultUser)).thenReturn(defaultUser);
+        when(userValidator.validate(Mockito.any())).thenReturn(ValidatorHelper.Status.INVALID_PASSWORD);
+
         defaultUser.password = "password";
 
         var status = userService.add(defaultUser);
@@ -83,6 +93,7 @@ class UserServiceTest {
     @Test
     void update() {
         when(userRepository.save(defaultUser)).thenReturn(defaultUser);
+        when(userValidator.validate(Mockito.any())).thenReturn(ValidatorHelper.Status.OK);
 
         var status = userService.update(defaultUser);
         assertEquals(ValidatorHelper.Status.OK, status);
