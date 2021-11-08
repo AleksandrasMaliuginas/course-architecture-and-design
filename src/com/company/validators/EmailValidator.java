@@ -1,6 +1,6 @@
-package com.alemal.aivaras.validators;
+package com.company.validators;
 
-import com.alemal.aivaras.interfaces.EmailValidation;
+import com.company.interfaces.EmailValidation;
 
 import java.util.ArrayList;
 import java.util.List;

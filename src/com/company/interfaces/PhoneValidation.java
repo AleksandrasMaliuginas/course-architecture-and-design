@@ -1,4 +1,4 @@
-package com.alemal.aivaras.interfaces;
+package com.company.interfaces;
 
 public interface PhoneValidation {
     boolean validatePhone(String phoneNumber);

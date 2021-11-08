@@ -1,4 +1,4 @@
-package com.alemal.aivaras.validators;
+package com.company.validators;
 
 import com.company.interfaces.PasswordValidation;
 
